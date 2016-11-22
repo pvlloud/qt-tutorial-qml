@@ -2,10 +2,12 @@ import QtQuick 2.3
 import QtQuick.Controls 1.2
 
 ApplicationWindow {
+    id: window
     visible: true
     width: 640
     height: 480
     title: qsTr("Hello QML")
+    signal menuClicked(string str)
 
     menuBar: MenuBar {
         Menu {
@@ -14,6 +16,10 @@ ApplicationWindow {
                 text: qsTr("Exit")
                 shortcut: "Ctrl+Q"
                 onTriggered: Qt.quit()
+            }
+            MenuItem {
+                text: qsTr("Click Me!")
+                onTriggered: window.menuClicked(text)
             }
         }
     }
