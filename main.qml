@@ -1,16 +1,32 @@
-import QtQuick 2.5
-import QtQuick.Window 2.2
+import QtQuick 2.3
+import QtQuick.Controls 1.2
 
-Window {
+ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Hello QML")
 
-    MainForm {
-        anchors.fill: parent
-        mouseArea.onClicked: {
-            console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("File")
+            MenuItem {
+                text: qsTr("Exit")
+                shortcut: "Ctrl+Q"
+                onTriggered: Qt.quit()
+            }
         }
+    }
+
+    Text {
+        id: hw
+        text: qsTr("Hello World")
+        font.capitalization: Font.AllUppercase
+        anchors.centerIn: parent
+    }
+
+    Label {
+        anchors { bottom: hw.top; bottomMargin: 5; horizontalCenter: hw.horizontalCenter }
+        text: qsTr("Hello Qt Quick")
     }
 }
